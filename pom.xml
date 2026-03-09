@@ -69,6 +69,46 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Jib плагин для сборки Docker образов без Docker daemon -->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.4</version>
+				<configuration>
+					<!-- Базовый образ с Java 21 (совместим с вашей версией) -->
+					<from>
+						<image>eclipse-temurin:21-jre-alpine</image>
+					</from>
+					
+					<!-- Куда публиковать образ (ЗАМЕНИТЕ НА СВОЙ РЕГИСТРИ) -->
+					<to>
+						<image>https://harbar.gipnotik.ru/library/demo</image>
+						<tags>
+							<tag>latest</tag>
+							<tag>${project.version}</tag>
+						</tags>
+					</to>
+					
+					<!-- Настройки контейнера -->
+					<container>
+						<mainClass>ru.gipnotik.demo.Application</mainClass>
+						<jvmFlags>
+							<jvmFlag>-Xms512m</jvmFlag>
+							<jvmFlag>-Xmx1g</jvmFlag>
+							<jvmFlag>-XX:+UseContainerSupport</jvmFlag>
+						</jvmFlags>
+						<ports>
+							<port>8080</port>
+						</ports>
+						<environment>
+							<SPRING_PROFILES_ACTIVE>prod</SPRING_PROFILES_ACTIVE>
+						</environment>
+					</container>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 	</build>
 
