@@ -78,7 +78,7 @@
 				<configuration>
 					<!-- Базовый образ с Java 21 (совместим с вашей версией) -->
 					<from>
-						<image>eclipse-temurin:21-jre-alpine</image>
+						<image>eclipse-temurin:25-jre-alpine</image>
 					</from>
 					
 					<!-- Куда публиковать образ (ЗАМЕНИТЕ НА СВОЙ РЕГИСТРИ) -->
