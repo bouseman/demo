@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Spring Boot сайт</title>
+    <link rel="stylesheet" href="/css/style.css">    
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Добро пожаловать!</h1>
+        
+        <!-- Здесь th:text подставляет значение из контроллера -->
+        <div class="message" th:text="${message}">
+            Сообщение по умолчанию
+        </div>
+        
+        <p class="info">
+            Привет, <span th:text="${name}">Имя</span>! 
+            Сейчас <span th:text="${year}">2024</span> год.
+        </p>
+        
+        <div class="footer">
+            <p>Страница создана с помощью Spring Boot и Thymeleaf</p>
+        </div>
+    </div>
+</body>
+</html>
