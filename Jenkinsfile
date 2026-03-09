@@ -8,11 +8,6 @@ metadata:
   name: kaniko-pod
 spec:
   containers:
-    - name: kaniko
-      image: gcr.io/kaniko-project/executor:debug
-      command:
-        - /busybox/cat
-      tty: true
     - name: kubectl
       image: harbor.gipnotik.ru/library/jenkins-agent:latest
       command:
@@ -37,7 +32,7 @@ spec:
 
         stage('Build image with kaniko') {
             steps {
-                container('kaniko') {
+                container('kubectl') {
                     script {
                         withVault([
                             vaultSecrets: [
