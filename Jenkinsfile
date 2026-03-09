@@ -48,13 +48,13 @@ spec:
                         ]) {                        
                             sh '''
                                 # Создаем Docker config
-                                mkdir -p /.docker
+                                mkdir -p $HOME/.docker
                                 
                                 # Создаем auth token
                                 AUTH_TOKEN=$(echo -n "$REGISTRY_USER:$REGISTRY_PASSWORD" | base64 | tr -d '\n')
                                 
                                 # Создаем правильный JSON config
-                                echo "{\\"auths\\":{\\"$REGISTRY\\":{\\"auth\\":\\"$AUTH_TOKEN\\"}}}" > /.docker/config.json                            
+                                echo "{\\"auths\\":{\\"$REGISTRY\\":{\\"auth\\":\\"$AUTH_TOKEN\\"}}}" > $HOME/.docker/config.json                            
                                 
                                 mvn compile jib:build
                                 
