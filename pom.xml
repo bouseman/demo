@@ -83,7 +83,7 @@
 					
 					<!-- Куда публиковать образ (ЗАМЕНИТЕ НА СВОЙ РЕГИСТРИ) -->
 					<to>
-						<image>https://harbar.gipnotik.ru/library/demo</image>
+						<image>harbar.gipnotik.ru/library/demo</image>
 						<tags>
 							<tag>latest</tag>
 							<tag>${project.version}</tag>
