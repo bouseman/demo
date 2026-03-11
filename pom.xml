@@ -92,7 +92,7 @@
 					
 					<!-- Настройки контейнера -->
 					<container>
-						<mainClass>ru.gipnotik.demo.Application</mainClass>
+						<mainClass>ru.gipnotik.demo.DemoApplication</mainClass>
 						<jvmFlags>
 							<jvmFlag>-Xms512m</jvmFlag>
 							<jvmFlag>-Xmx1g</jvmFlag>
