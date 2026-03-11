@@ -1,0 +1,37 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: demo-https
+spec:
+  parentRefs:
+  - name: main
+    namespace: gateway
+    port: 443
+    sectionName: https-demo
+  hostnames:
+  - "demo.gipnotik.ru"
+  rules:
+  - backendRefs:
+    - name: demo
+      port: 8080
+---
+# 2. HTTP редирект
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: demo-http-redirect
+spec:
+  parentRefs:
+  - name: main
+    namespace: gateway
+    port: 80
+    sectionName: http-demo
+  hostnames:
+  - "demo.gipnotik.ru"
+  rules:
+  - filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+        port: 443
+        statusCode: 301
