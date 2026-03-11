@@ -30,7 +30,7 @@ spec:
 
 
 
-        stage('Build image with kaniko') {
+        stage('deploy') {
             steps {
                 container('kubectl') {
                     script {
