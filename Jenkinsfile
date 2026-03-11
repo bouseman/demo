@@ -68,6 +68,8 @@ spec:
                                 
                                 mvn compile jib:build
 
+                                mvn clean compile jib:build -Djib.skipExistingImages=false 
+
                                 helm upgrade --install demo ./helm \
                                 --namespace demo --create-namespace \
                                 --kubeconfig kubeconfig.yaml \
