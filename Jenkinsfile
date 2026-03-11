@@ -43,9 +43,19 @@ spec:
                                         [envVar: 'REGISTRY_PASSWORD', vaultKey: 'admin_password'],
                                         [envVar: 'REGISTRY_USER', vaultKey: 'user']
                                     ]
-                                ]                            
+                                ],
+                                [
+                                    path: '/kv/k8s',
+                                    engineVersion: 2,
+                                    secretValues: [
+                                        [envVar: 'CONFIG', vaultKey: 'kubeconfig']
+                                    ]
+                                ]                                                               
                             ]
-                        ]) {                        
+                        ]) { 
+
+                            writeFile file: 'kubeconfig.yaml', text: env.CONFIG
+
                             sh '''
                                 # Создаем Docker config
                                 mkdir -p $HOME/.docker
@@ -57,6 +67,11 @@ spec:
                                 echo "{\\"auths\\":{\\"$REGISTRY\\":{\\"auth\\":\\"$AUTH_TOKEN\\"}}}" > $HOME/.docker/config.json                            
                                 
                                 mvn compile jib:build
+
+                                helm upgrade --install demo ./helm \
+                                --namespace demo --create-namespace \
+                                --kubeconfig kubeconfig.yaml \
+                                --set "timestamp=$(date +%s)"                                
                                 
                             '''
                         }
@@ -68,4 +83,3 @@ spec:
 
     }
 }
-

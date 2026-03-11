@@ -1,0 +1,13 @@
+# Минимальные настройки
+replicaCount: 1
+
+image:
+  repository: harbor.gipnotik.ru/library/demo
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+containerPort: 8080
